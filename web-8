@@ -1,0 +1,215 @@
+Q.1  Whats React and its pros and cons?
+React is a popular JavaScript library for building user interfaces. It was developed by Facebook and is widely used in web development.
+React allows developers to create reusable UI components and efficiently update and render them based on changes in the application's state.
+
+Pros of React:
+1. Virtual DOM: React uses a virtual representation of the DOM (Document Object Model) called the Virtual DOM.
+This allows React to efficiently update and render components by minimizing direct manipulation of the actual DOM.
+As a result, React can provide better performance compared to traditional approaches.
+
+2. Component-based architecture: React promotes a component-based architecture, where UIs are built by combining reusable components.
+This modular approach enhances code reusability, maintainability, and scalability. Developers can easily create, reuse, and compose components, leading to more efficient development and easier maintenance.
+
+3. Unidirectional data flow: React follows a unidirectional data flow pattern, also known as Flux architecture.
+This pattern makes it easier to understand and manage application state by enforcing a one-way data flow. It simplifies state management, reduces bugs, and makes the application more predictable.
+
+4. React ecosystem: React has a vast ecosystem with a wide range of libraries, tools, and community support.
+These resources provide additional functionality, such as state management (e.g., Redux), routing (e.g., React Router), and form handling (e.g., Formik). 
+The extensive ecosystem makes it easier to extend React's capabilities and solve various development challenges.
+
+Cons of React:
+1. Steep learning curve: React has a learning curve, especially for developers new to the concepts of component-based architecture and the JSX syntax used in React.
+Understanding concepts like state, props, and lifecycle methods can take time for beginners.
+
+2. Tooling complexity: While React itself is relatively simple, the React ecosystem can be complex. 
+Choosing the right tools and libraries, setting up build configurations, and managing dependencies can be overwhelming, especially for beginners.
+However, tools like Create React App provide preconfigured setups to simplify this process.
+
+3. JSX syntax: React uses JSX, a combination of JavaScript and HTML-like syntax, to define component structures. 
+This syntax may feel unfamiliar to developers who are used to writing separate HTML and JavaScript.
+JSX requires a build step to transpile it into regular JavaScript, which can be seen as an additional complexity.
+
+4. Lack of opinions on architecture: React doesn't provide strict guidelines or opinions on how to structure the entire application.
+While this flexibility allows developers to choose the best architecture for their project, it can also lead to inconsistencies across different React projects or teams. 
+Developers need to make additional decisions on state management, routing, and other aspects of the application architecture.
+
+
+################################################################################################################################
+Q.2 What do you understand by Virtual Dom?
+Virtual DOM refers to a concept used in web development frameworks like React. It is a lightweight, virtual representation of the actual DOM (Document Object Model) present in a web browser.
+The DOM is a tree-like structure that represents the HTML elements of a web page.
+In React, when there are changes to the application's state or props, instead of directly manipulating the real DOM to update the UI, React creates a virtual representation of the DOM. 
+This virtual DOM is a JavaScript object that mirrors the structure of the real DOM.
+
+################################################################################################################################
+Q.3 Difference between Virtual Dom vs Real Dom
+
+Virtual DOM:
+Lightweight representation: The virtual DOM is a lightweight JavaScript object that mimics the structure of the real DOM.
+
+Efficient updates: When changes occur in the application's state or props, React updates the virtual DOM, not the real DOM.
+React determines the difference between the previous virtual DOM and the updated virtual DOM (known as "diffing") to identify the minimal set of changes needed to update the real DOM.
+
+Batched updates: React batches multiple updates together and applies them efficiently to the virtual DOM. This helps in avoiding unnecessary re-renders and optimizing the rendering process.
+
+Reconciliation: After the virtual DOM is updated, React performs a process called reconciliation. 
+It compares the updated virtual DOM with the real DOM and applies the necessary changes only to the parts that have actually changed. This selective update approach helps in improving performance.
+
+Real DOM:
+
+Actual browser representation: The real DOM is the actual representation of the HTML structure rendered in the browser.
+
+Direct manipulation: When changes occur in the application's state or props, the real DOM needs to be directly manipulated to reflect those changes.
+This involves modifying the DOM nodes and their attributes directly using JavaScript.
+
+Costly updates: Updating the real DOM can be an expensive operation, especially for complex web applications with frequent updates.
+Modifying the DOM tree can cause reflows and repaints, which can impact performance.
+
+Full re-renders: In the real DOM, even small updates to a component can trigger a full re-render of the affected part of the DOM tree and its children, irrespective of whether the other parts have changed or not.
+This can lead to unnecessary work and decreased performance.
+################################################################################################################################
+Q.4 Whats component? Types of component
+In React, a component is a reusable, self-contained building block that encapsulates the UI and its behavior. 
+It represents a specific part of the user interface and can be composed with other components to create complex UI structures.
+Components can be thought of as custom HTML elements with associated functionality.
+
+There are two types of components in React:
+Class-based components (also known as Class Components): Class-based components are defined as ES6 classes that extend the base React.Component class.
+They are created using the class keyword and include lifecycle methods and state management.
+Function-based components (also known as Functional Components): Function-based components are defined as JavaScript functions.
+They are simpler and more lightweight compared to class-based components and do not have their own internal state or lifecycle methods.
+################################################################################################################################
+Q.5 Difference between class & function based component
+
+Syntax: Class-based components are defined using the class keyword and extend the React.Component class, while function-based components are regular JavaScript functions.
+
+Lifecycle methods: Class-based components have access to a range of lifecycle methods, such as componentDidMount, componentDidUpdate, and componentWillUnmount, which allow developers to perform actions at different stages of a component's life.
+Function-based components can now utilize similar functionality using React Hooks, like useEffect, useRef, and useState.
+
+State management: Class-based components have their own internal state, accessible via this.state and managed through this.setState. 
+Function-based components did not have state management until React Hooks were introduced. With Hooks, function-based components can now use the useState Hook to manage state.
+
+################################################################################################################################
+Q.6 Explain react component life cycle 
+
+1) Mounting: The component is being created and inserted into the DOM.
+- constructor(): Initializes the component's state and sets up initial values.
+- render(): Returns the JSX to be rendered.
+- componentDidMount(): Called after the component is mounted and added to the DOM. It is used for side effects, such as data fetching or setting up event listeners.
+
+2)Updating: The component's state or props are changed, causing a re-render.
+- render(): Returns the updated JSX.
+- componentDidUpdate(): Called after the component is updated and re-rendered. It is used for performing actions after a component update, such as fetching new data based on prop changes.
+
+3) Unmounting: The component is being removed from the DOM.
+- componentWillUnmount(): Called right before the component is unmounted and removed from the DOM. It is used for cleaning up resources, such as canceling timers or removing event listeners.
+
+################################################################################################################################
+Q.7 Explain Prop Drilling in React & Ways to avoid it
+
+Prop drilling in React refers to the situation where props need to be passed through multiple layers of components to reach a deeply nested component that requires the data.
+This can happen when a component needs access to props that are not directly available in its immediate parent but are available in a higher-level component.
+Prop drilling can lead to code that is difficult to maintain and understand, as well as increased coupling between components.
+It can also result in unnecessary re-rendering of intermediate components when the props change.
+
+To avoid prop drilling and make the codebase more maintainable and flexible, there are several techniques and patterns that can be employed:
+
+1. Using Context API: React's Context API allows you to create a context object that holds the data you want to share across multiple components. By wrapping the relevant components with a context provider and accessing the data using `useContext` or `Consumer` in the deeply nested component, you can avoid passing props through intermediate components. Context provides a way to establish a "global" state that can be accessed anywhere in the component tree.
+
+2. Component Composition: Instead of passing props through multiple layers, you can leverage component composition to create a hierarchy of components that encapsulate related functionality. By designing components with clear responsibilities, you can avoid the need to drill props through many levels. This can be achieved by breaking down complex components into smaller, more focused components.
+
+3. State Management Libraries: Utilizing state management libraries like Redux or MobX can help avoid prop drilling. These libraries provide a centralized store for managing application state, eliminating the need to pass data through component props. Components can directly access the required data from the store using selectors or hooks.
+
+4. Render Props and Higher-Order Components (HOCs): Render Props and HOCs are patterns that enable component composition and the sharing of data without prop drilling. Render Props involve passing a render function as a prop to a component, allowing the component to render the provided function with the necessary data. HOCs are functions that wrap components and enhance their behavior by injecting additional props. Both patterns can help eliminate the need for deeply nested prop drilling.
+
+5. React Hooks: With the introduction of React Hooks, you can manage state and share data without prop drilling. Hooks like `useReducer` and `useState` allow you to maintain state within a component, reducing the need to pass data through props. Additionally, custom hooks can be created to encapsulate and share data or logic across multiple components.
+
+################################################################################################################################
+Q.8 Create a Counter Web App using React
+
+import React, { useState } from 'react';
+
+function CounterApp() {
+  const [counter, setCounter] = useState(0);
+
+  const incrementCounter = () => {
+    setCounter(counter + 1);
+  };
+
+  const decrementCounter = () => {
+    setCounter(counter - 1);
+  };
+
+  return (
+    <div>
+      <h1>Counter App</h1>
+      <p>Counter: {counter}</p>
+      <button onClick={incrementCounter}>Increment</button>
+      <button onClick={decrementCounter}>Decrement</button>
+    </div>
+  );
+}
+
+export default CounterApp;
+-----------------------------------------------------------------------
+import React from 'react';
+import ReactDOM from 'react-dom';
+import CounterApp from './CounterApp';
+
+ReactDOM.render(<CounterApp />, document.getElementById('root'));
+-------------------------------------------------------------------------
+
+
+################################################################################################################################
+Q.10  Develop a simple website using React, fetch and display products from the "https://fakestoreapi.com/products" API. The website should have the following features:
+import React, { useEffect, useState } from 'react';
+
+function ProductList() {
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch('https://fakestoreapi.com/products');
+      if (!response.ok) {
+        throw new Error('Failed to fetch products');
+      }
+      const data = await response.json();
+      setProducts(data);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  return (
+    <div className="product-list">
+      <h1>Product List</h1>
+      <div className="row">
+        {products.map((product) => (
+          <div key={product.id} className="product-card">
+            <img src={product.image} alt={product.title} />
+            <h3>{product.title}</h3>
+            <p>{product.price}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default ProductList;
+---------------------------------------------
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ProductList from './ProductList';
+
+ReactDOM.render(<ProductList />, document.getElementById('root'));
+
